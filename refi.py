@@ -2,21 +2,20 @@
 Mortgage Refinancing Calculator
 """
 
-
 def get_float_input(prompt: str, min_val: float = 0, max_val: float = None) -> float:
     """Get validated float input from user."""
     while True:
         try:
             value = float(input(prompt))
             if value < min_val:
-                print(f"  ⚠ Value must be at least {min_val}")
+                print(f"Value must be at least {min_val}")
                 continue
             if max_val and value > max_val:
-                print(f"  ⚠ Value must be at most {max_val}")
+                print(f"Value must be at most {max_val}")
                 continue
             return value
         except ValueError:
-            print("  ⚠ Please enter a valid number")
+            print("Please enter a valid number")
 
 
 def get_int_input(prompt: str, min_val: int = 1) -> int:
@@ -25,11 +24,11 @@ def get_int_input(prompt: str, min_val: int = 1) -> int:
         try:
             value = int(input(prompt))
             if value < min_val:
-                print(f"  ⚠ Value must be at least {min_val}")
+                print(f"Value must be at least {min_val}")
                 continue
             return value
         except ValueError:
-            print("  ⚠ Please enter a valid whole number")
+            print("Please enter a valid whole number")
 
 
 def calculate_monthly_payment(principal: float, annual_rate: float, months: int) -> float:
@@ -271,5 +270,5 @@ if __name__ == "__main__":
     try:
         main()
     except KeyboardInterrupt:
-        print("\n\n  Cancelled. Goodbye! 👋\n")
+        print("\n\n  Guess you don't care. Goodbye! \n")
 
