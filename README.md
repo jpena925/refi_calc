@@ -1,24 +1,10 @@
-# README
+# Personal Refi Calculator
+Run your current mortgage stats and get some math back so you can make a better decision if you should refinance.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Includes a "recommendation" and amount of years it would take to get net positive after the new closing costs.
 
-Things you may want to cover:
+### IN PROGRESS
+Moving from CLI script to web interface
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### To Run
+`python3 refi.py`
