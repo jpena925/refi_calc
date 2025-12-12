@@ -1,1 +1,71 @@
-<h1>Refinance Calculator</h1>
+<div class="max-w-2xl mx-auto p-8">
+  <h1 class="text-3xl font-bold mb-8">Refinance Calculator</h1>
+
+  <%= form_with url: "#", method: :get, data: { controller: "calculator" } do |form| %>
+    <div class="mb-6">
+      <h2 class="text-xl font-semibold mb-4">Current Mortgage</h2>
+
+      <div class="mb-4">
+        <%= form.label :current_balance, "Remaining Balance ($)", class: "block mb-2" %>
+        <%= form.number_field :current_balance, class: "border rounded p-2 w-full", step: 0.01, min: 0 %>
+      </div>
+
+      <div class="mb-4">
+        <%= form.label :current_rate, "Current Interest Rate (%)", class: "block mb-2" %>
+        <%= form.number_field :current_rate, class: "border rounded p-2 w-full", step: 0.01, min: 0, max: 30 %>
+      </div>
+
+      <div class="mb-4">
+        <%= form.label :years_remaining, "Years Remaining on Loan", class: "block mb-2" %>
+        <%= form.number_field :years_remaining, class: "border rounded p-2 w-full", min: 1 %>
+      </div>
+
+      <div class="mb-4">
+        <%= form.label :current_payment, "Current Monthly Payment ($)", class: "block mb-2" %>
+        <%= form.number_field :current_payment, class: "border rounded p-2 w-full", step: 0.01, min: 0 %>
+      </div>
+    </div>
+
+    <div class="mb-6">
+      <h2 class="text-xl font-semibold mb-4">New Loan</h2>
+
+      <div class="mb-4">
+        <%= form.label :new_rate, "New Interest Rate (%)", class: "block mb-2" %>
+        <%= form.number_field :new_rate, class: "border rounded p-2 w-full", step: 0.01, min: 0, max: 30 %>
+      </div>
+
+      <div class="mb-4">
+        <%= form.label :same_term, class: "inline-flex items-center cursor-pointer" do %>
+          <%= form.check_box :same_term, class: "mr-2", checked: true %>
+          <span>Keep same term (<span data-calculator-target="termDisplay">-- years</span>)</span>
+        <% end %>
+      </div>
+
+      <div class="mb-4">
+        <%= form.label :new_term, "New Loan Term (years)", class: "block mb-2" %>
+        <%= form.number_field :new_term, class: "border rounded p-2 w-full", min: 1, max: 40, placeholder: "e.g. 30" %>
+      </div>
+
+      <div class="mb-4">
+        <%= form.label :knows_closing_costs, class: "inline-flex items-center cursor-pointer" do %>
+          <%= form.check_box :knows_closing_costs, class: "mr-2" %>
+          <span>I know my closing costs</span>
+        <% end %>
+        <p class="text-sm text-gray-500 mt-1">If unchecked, we'll estimate 2-5% of loan amount</p>
+      </div>
+
+      <div class="mb-4">
+        <%= form.label :closing_costs, "Closing Costs ($)", class: "block mb-2" %>
+        <%= form.number_field :closing_costs, class: "border rounded p-2 w-full", step: 0.01, min: 0 %>
+      </div>
+    </div>
+
+    <div class="mb-6">
+      <%= form.submit "Calculate", class: "bg-blue-600 text-white px-6 py-3 rounded font-semibold hover:bg-blue-700 cursor-pointer" %>
+    </div>
+  <% end %>
+
+  <%# Results will go here %>
+  <div id="results" class="hidden">
+  </div>
+</div>
