@@ -36,7 +36,7 @@
 
       <div class="mb-4">
         <%= form.label :same_term, class: "inline-flex items-center cursor-pointer" do %>
-          <%= form.check_box :same_term, class: "mr-2", checked: true %>
+          <%= form.check_box :same_term, class: "mr-2", checked: true,  data: { action: "change->calculator#toggleTerm" } %>
           <span>Keep same term (<span data-calculator-target="termDisplay">-- years</span>)</span>
         <% end %>
       </div>
@@ -48,7 +48,7 @@
 
       <div class="mb-4">
         <%= form.label :knows_closing_costs, class: "inline-flex items-center cursor-pointer" do %>
-          <%= form.check_box :knows_closing_costs, class: "mr-2" %>
+          <%= form.check_box :knows_closing_costs, class: "mr-2", data: { action: "change->calculator#toggleClosingCosts"} %>
           <span>I know my closing costs</span>
         <% end %>
         <p class="text-sm text-gray-500 mt-1">If unchecked, we'll estimate 2-5% of loan amount</p>
