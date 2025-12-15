@@ -1,0 +1,102 @@
+<div class="max-w-2xl mx-auto p-8">
+  <h1 class="text-3xl font-bold mb-8">Refinancing Analysis</h1>
+
+  <%# Current vs New Loan Comparison %>
+  <div class="grid grid-cols-2 gap-4 mb-8">
+    <div class="p-4 bg-gray-100 rounded">
+      <h2 class="text-lg font-semibold mb-3 text-gray-700">Current Loan</h2>
+      <div class="space-y-2 text-sm">
+        <p><span class="text-gray-500">Balance:</span> <%= number_to_currency(@result.current_balance) %></p>
+        <p><span class="text-gray-500">Interest Rate:</span> <%= @result.current_rate %>%</p>
+        <p><span class="text-gray-500">Monthly Payment:</span> <%= number_to_currency(@result.current_payment) %></p>
+        <p><span class="text-gray-500">Time Remaining:</span> <%= @result.years_remaining %> years</p>
+      </div>
+    </div>
+
+    <div class="p-4 bg-blue-50 rounded">
+      <h2 class="text-lg font-semibold mb-3 text-blue-700">New Loan</h2>
+      <div class="space-y-2 text-sm">
+        <p><span class="text-gray-500">Loan Amount:</span> <%= number_to_currency(@result.current_balance) %></p>
+        <p><span class="text-gray-500">Interest Rate:</span> <%= @result.new_rate %>%</p>
+        <p><span class="text-gray-500">Monthly Payment:</span> <%= number_to_currency(@result.new_payment) %></p>
+        <p><span class="text-gray-500">Loan Term:</span> <%= @result.new_term_years %> years</p>
+      </div>
+    </div>
+  </div>
+
+  <%# Savings Breakdown %>
+  <div class="p-6 bg-gray-50 rounded mb-8">
+    <h2 class="text-lg font-semibold mb-4">Savings Breakdown</h2>
+
+    <% if @result.monthly_savings > 0 %>
+      <div class="grid grid-cols-2 gap-4 mb-4">
+        <div>
+          <p class="text-gray-500 text-sm">Monthly Savings</p>
+          <p class="text-2xl font-bold text-green-600"><%= number_to_currency(@result.monthly_savings) %></p>
+        </div>
+        <div>
+          <p class="text-gray-500 text-sm">Annual Savings</p>
+          <p class="text-2xl font-bold text-green-600"><%= number_to_currency(@result.annual_savings) %></p>
+        </div>
+      </div>
+
+      <div class="border-t pt-4 space-y-3">
+        <div class="flex justify-between">
+          <span class="text-gray-600">Closing Costs:</span>
+          <span class="font-semibold"><%= number_to_currency(@result.closing_costs) %></span>
+        </div>
+        <% if @result.used_estimate %>
+          <p class="text-xs text-gray-400">
+            Estimated range: <%= number_to_currency(@result.closing_costs_low) %> - <%= number_to_currency(@result.closing_costs_high) %>
+          </p>
+        <% end %>
+        <div class="flex justify-between">
+          <span class="text-gray-600">Break-Even Point:</span>
+          <span class="font-semibold">
+            <% if @result.break_even_years == 0 %>
+              <%= @result.break_even_remaining_months %> months
+            <% elsif @result.break_even_remaining_months == 0 %>
+              <%= @result.break_even_years %> years
+            <% else %>
+              <%= @result.break_even_years %> years, <%= @result.break_even_remaining_months %> months
+            <% end %>
+          </span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-gray-600">Total Interest Saved:</span>
+          <span class="font-semibold text-green-600"><%= number_to_currency(@result.interest_savings) %></span>
+        </div>
+        <div class="flex justify-between border-t pt-3">
+          <span class="text-gray-600">Net Savings (after closing costs, over <%= @result.years_remaining %> yr):</span>
+          <span class="font-bold text-lg <%= @result.net_savings > 0 ? 'text-green-600' : 'text-red-600' %>">
+            <%= number_to_currency(@result.net_savings) %>
+          </span>
+        </div>
+      </div>
+
+    <% else %>
+      <div class="text-center py-4">
+        <p class="text-xl text-red-600 font-semibold mb-2">
+          ⚠️ Monthly payment would INCREASE by <%= number_to_currency(@result.monthly_savings.abs) %>
+        </p>
+        <p class="text-gray-600">This refinance does NOT save money on monthly payments.</p>
+        <% if @result.interest_savings > 0 %>
+          <p class="mt-4 text-gray-600">
+            However, if you're shortening the term, you may still save on total interest:<br>
+            <span class="font-semibold">Total Interest Difference: <%= number_to_currency(@result.interest_savings) %></span>
+          </p>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <%# Recommendation %>
+  <div class="p-6 rounded mb-8 <%= recommendation_bg_class(@result.recommendation[:status]) %>">
+    <h2 class="text-lg font-semibold mb-2">
+      <%= @result.recommendation[:icon] %> <%= @result.recommendation[:title] %>
+    </h2>
+    <p class="text-gray-700"><%= @result.recommendation[:message] %></p>
+  </div>
+
+  <%= link_to "← Back to Calculator", root_path, class: "bg-blue-600 text-white px-6 py-3 rounded font-semibold hover:bg-blue-700 inline-block" %>
+</div>
