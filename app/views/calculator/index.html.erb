@@ -17,7 +17,7 @@
 
       <div class="mb-4">
         <%= form.label :years_remaining, "Years Remaining on Loan", class: "block mb-2" %>
-        <%= form.number_field :years_remaining, class: "border rounded p-2 w-full", min: 1 %>
+        <%= form.number_field :years_remaining, class: "border rounded p-2 w-full", min: 1, data: { action: "input->calculator#updateTermDisplay" } %>
       </div>
 
       <div class="mb-4">
@@ -37,7 +37,7 @@
       <div class="mb-4">
         <%= form.label :same_term, class: "inline-flex items-center cursor-pointer" do %>
           <%= form.check_box :same_term, class: "mr-2",  data: { action: "change->calculator#toggleTerm" } %>
-          <span>Keep same term (<span data-calculator-target="termDisplay">-- years</span>)</span>
+          <span>Keep same term (<span data-calculator-target="termDisplay">--</span> years)</span>
         <% end %>
       </div>
 

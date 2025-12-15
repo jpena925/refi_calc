@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-    static targets = ["newTermField", "closingCostsField"]
+    static targets = ["newTermField", "closingCostsField", "termDisplay"]
 
     connect() {
         console.log("Calculator connected")
@@ -13,5 +13,10 @@ export default class extends Controller {
 
     toggleClosingCosts() {
         this.closingCostsFieldTarget.classList.toggle("hidden")
+    }
+
+    updateTermDisplay(event) {
+        const years = event.target.value;
+        this.termDisplayTarget.textContent = years || "--"
     }
 }
