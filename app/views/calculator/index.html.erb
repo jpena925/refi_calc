@@ -23,6 +23,7 @@
       <div class="mb-4">
         <%= form.label :current_payment, "Current Monthly Payment ($)", class: "block mb-2" %>
         <%= form.number_field :current_payment, class: "border rounded p-2 w-full", step: 0.01, min: 0 %>
+        <p class="text-sm text-gray-500 mt-1">Principal + Interest only (exclude escrow, taxes, PMI)</p>
       </div>
     </div>
 

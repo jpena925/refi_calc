@@ -8,7 +8,7 @@
       <div class="space-y-2 text-sm">
         <p><span class="text-gray-500">Balance:</span> <%= number_to_currency(@result.current_balance) %></p>
         <p><span class="text-gray-500">Interest Rate:</span> <%= @result.current_rate %>%</p>
-        <p><span class="text-gray-500">Monthly Payment:</span> <%= number_to_currency(@result.current_payment) %></p>
+        <p><span class="text-gray-500">Monthly P&I:</span> <%= number_to_currency(@result.current_payment) %></p>
         <p><span class="text-gray-500">Time Remaining:</span> <%= @result.years_remaining %> years</p>
       </div>
     </div>
@@ -18,7 +18,7 @@
       <div class="space-y-2 text-sm">
         <p><span class="text-gray-500">Loan Amount:</span> <%= number_to_currency(@result.current_balance) %></p>
         <p><span class="text-gray-500">Interest Rate:</span> <%= @result.new_rate %>%</p>
-        <p><span class="text-gray-500">Monthly Payment:</span> <%= number_to_currency(@result.new_payment) %></p>
+        <p><span class="text-gray-500">Monthly P&I:</span> <%= number_to_currency(@result.new_payment) %></p>
         <p><span class="text-gray-500">Loan Term:</span> <%= @result.new_term_years %> years</p>
       </div>
     </div>
