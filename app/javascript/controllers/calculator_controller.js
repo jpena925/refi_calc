@@ -8,10 +8,10 @@ export default class extends Controller {
     }
 
     toggleTerm() {
-        console.log("Term toggled")
+        this.newTermFieldTarget.classList.toggle("hidden")
     }
 
     toggleClosingCosts() {
-        console.log("Closing costs toggled")
+        this.closingCostsFieldTarget.classList.toggle("hidden")
     }
 }

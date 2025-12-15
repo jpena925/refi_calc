@@ -36,12 +36,12 @@
 
       <div class="mb-4">
         <%= form.label :same_term, class: "inline-flex items-center cursor-pointer" do %>
-          <%= form.check_box :same_term, class: "mr-2", checked: true,  data: { action: "change->calculator#toggleTerm" } %>
+          <%= form.check_box :same_term, class: "mr-2",  data: { action: "change->calculator#toggleTerm" } %>
           <span>Keep same term (<span data-calculator-target="termDisplay">-- years</span>)</span>
         <% end %>
       </div>
 
-      <div class="mb-4">
+      <div class="mb-4" data-calculator-target="newTermField">
         <%= form.label :new_term, "New Loan Term (years)", class: "block mb-2" %>
         <%= form.number_field :new_term, class: "border rounded p-2 w-full", min: 1, max: 40, placeholder: "e.g. 30" %>
       </div>
@@ -54,7 +54,7 @@
         <p class="text-sm text-gray-500 mt-1">If unchecked, we'll estimate 2-5% of loan amount</p>
       </div>
 
-      <div class="mb-4">
+      <div class="mb-4" data-calculator-target="closingCostsField">
         <%= form.label :closing_costs, "Closing Costs ($)", class: "block mb-2" %>
         <%= form.number_field :closing_costs, class: "border rounded p-2 w-full", step: 0.01, min: 0 %>
       </div>
