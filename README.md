@@ -3,8 +3,9 @@ Run your current mortgage stats and get some math back so you can make a better 
 
 Includes a "recommendation" and amount of years it would take to get net positive after the new closing costs.
 
-### IN PROGRESS
-Moving from CLI script to web interface
+### Stack
+Built entirely in Rails just to try it as a front end and realize I would never do this again.
 
-### To Run
-`python3 refi.py`
+### Use in CLI:
+In the scripts dir, run refi.py with: 
+`python refi.py`
